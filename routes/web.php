@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Supplier\WasteSupply;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,7 @@ Route::middleware([
 
 
 Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified', 'isSupplier'])->namespace('App\Http\Controllers\Supplier')->group(function () {
+    Route::get('supply-waste', 'WasteSupply@index')->name('supply-waste');
+});
